@@ -30,6 +30,8 @@ void setup() {
 
   //setting up lights to work
   pinMode(led, OUTPUT);
+
+  Serial.begin(9600);
 }
 
 void loop() {
