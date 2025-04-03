@@ -1,6 +1,6 @@
 /*
 
-This code is rough and will have to be chamged later on. I dont know what Thomas has already done so
+This code is rough and will have to be changed later on. I dont know what Thomas has already done so
 if our work overlaps well just take the parts from each we need and like.
 
 
@@ -18,7 +18,7 @@ const int led = 4;
 bool jackDirSwitch = 0;
 
 void setup() {
-  // attach the servos to a specific pin
+  //Attach the servos to a specific pin
   servoForCampfire.attach(9);
   servoForJack.attach(10);
 
