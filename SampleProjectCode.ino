@@ -3,6 +3,8 @@
 This code is rough and will have to be changed later on. I dont know what Thomas has already done so
 if our work overlaps well just take the parts from each we need and like.
 
+Sounds good, we will look in class - seb
+
 
 
 */
