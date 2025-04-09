@@ -1,0 +1,56 @@
+#include <Servo.h>
+
+// Input pins for copper tape switches
+const int boatPin = 2;
+const int ralphPiggyPin = 3;
+const int glassesPin = 4;
+
+// Output pins
+const int fireLEDPin = 5;
+Servo doorServo; // Servo for the rotating Jack/tree panel
+
+// To track state change
+int prevBoatState = LOW;
+int prevRalphPiggyState = LOW;
+int prevGlassesState = LOW;
+
+void setup() {
+  pinMode(boatPin, INPUT);
+  pinMode(ralphPiggyPin, INPUT);
+  pinMode(glassesPin, INPUT);
+  pinMode(fireLEDPin, OUTPUT);
+
+  doorServo.attach(9); // Connect servo to pin 9
+
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Read all switch states
+  int boatState = digitalRead(boatPin);
+  int ralphPiggyState = digitalRead(ralphPiggyPin);
+  int glassesState = digitalRead(glassesPin);
+
+  // Boat placed – turn off LED fire
+  if (boatState != prevBoatState && boatState == HIGH) {
+    Serial.println("Boat placed: Fire goes out");
+    digitalWrite(fireLEDPin, LOW); // Turn fire off
+  }
+
+  // Ralph & Piggy placed – rotate servo to show Jack side
+  if (ralphPiggyState != prevRalphPiggyState && ralphPiggyState == HIGH) {
+    Serial.println("Ralph & Piggy placed: Flipping to Jack & Pig head");
+    doorServo.write(180); // Rotate to reveal Jack (adjust angle as needed)
+  }
+
+  //  Glasses reinserted – turn on LED fire
+  if (glassesState != prevGlassesState && glassesState == HIGH) {
+    Serial.println("Glasses reinserted: Fire reignites");
+    digitalWrite(fireLEDPin, HIGH); // Turn fire on
+  }
+
+  // Update previous states
+  prevBoatState = boatState;
+  prevRalphPiggyState = ralphPiggyState;
+  prevGlassesState = glassesState;
+}
