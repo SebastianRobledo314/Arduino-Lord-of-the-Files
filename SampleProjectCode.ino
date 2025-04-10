@@ -46,7 +46,7 @@ void loop() {
     jackDirSwitch = 1
   }
   if (digitalRead(buttonPinjack) == HIGH && jackDirSwitch == 1){
-    servoForJack.write(-180);
+    servoForJack.write(0);
     jackDirSwitch = 0
   }
 
